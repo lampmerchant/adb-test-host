@@ -218,6 +218,10 @@ Talk
 	movwf	FSR0H		; memory
 	clrf	FSR0L		; "
 	call	AdbReceive	;Receive the payload, if there is one
+	xorlw	2		;If the ADB got stuck down during the receive
+	movlw	2		; (result code of 2), overwrite the result code
+	btfsc	STATUS,Z	; from sending the command with 2 so the host
+	movwf	X2		; knows
 	movf	FSR0L,W		;Use the pointer's current position to derive
 	movwf	X3		; the length of the received payload and save it
 	movf	X2,W		;Send the result of the command over UART
