@@ -113,7 +113,7 @@ Init
 	movlw	B'11110000'
 	movwf	OSCCON
 
-	banksel	RCSTA		;UART async mode, 115200 kHz, but receiver not
+	banksel	RCSTA		;UART async mode, 115.2 kHz, but receiver not
 	movlw	B'01001000'	; enabled just yet
 	movwf	BAUDCON
 	clrf	SPBRGH
