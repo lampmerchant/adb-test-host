@@ -8,6 +8,7 @@ A host for testing Apple Desktop Bus devices.
 
 * PIC
    * Microchip MPASM (bundled with MPLAB)
+      * Note that you **must** use MPLAB X version 5.35 or earlier or MPLAB 8 as later versions of MPLAB X have removed MPASM
    * A PIC12F1840 microcontroller
    * A device to program the PIC with
 * Python
