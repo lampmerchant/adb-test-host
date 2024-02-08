@@ -10,28 +10,28 @@
 
 ;;; Connections ;;;
 
-;;;                                                    ;;;
-;                     .--------.                         ;
-;             Supply -|01 \/ 08|- Ground                 ;
-;    ADB <-->    RA5 -|02    07|- RA0    ---> UART Tx    ;
-;        --->    RA4 -|03    06|- RA1    <--- UART Rx    ;
-;        --->    RA3 -|04    05|- RA2    <---            ;
-;                     '--------'                         ;
-;                                                        ;
-;    ADB should be pulled up with a 470-ohm resistor.    ;
-;                                                        ;
-;;;                                                    ;;;
+;;;                                                         ;;;
+;                          .--------.                         ;
+;                  Supply -|01 \/ 08|- Ground                 ;
+;      ADB <-->       RA5 -|02    07|- RA0    ---> UART Tx    ;
+;          --->       RA4 -|03    06|- RA1    <--- UART Rx    ;
+;    !MCLR ---> !MCLR/RA3 -|04    05|- RA2    <---            ;
+;                          '--------'                         ;
+;                                                             ;
+;    ADB should be pulled up with a 470-ohm resistor.         ;
+;                                                             ;
+;;;                                                         ;;;
 
 
 ;;; Assembler Directives ;;;
 
 	list		P=PIC12F1840, F=INHX32, ST=OFF, MM=OFF, R=DEC, X=ON
 	#include	P12F1840.inc
-	__config	_CONFIG1, _FOSC_INTOSC & _WDTE_OFF & _PWRTE_ON & _MCLRE_OFF & _CP_OFF & _CPD_OFF & _BOREN_OFF & _CLKOUTEN_OFF & _IESO_OFF & _FCMEN_OFF
+	__config	_CONFIG1, _FOSC_INTOSC & _WDTE_OFF & _PWRTE_ON & _MCLRE_ON & _CP_OFF & _CPD_OFF & _BOREN_OFF & _CLKOUTEN_OFF & _IESO_OFF & _FCMEN_OFF
 			;_FOSC_INTOSC	Internal oscillator, I/O on RA5
 			;_WDTE_OFF	Watchdog timer disabled
 			;_PWRTE_ON	Keep in reset for 64 ms on start
-			;_MCLRE_OFF	RA3/!MCLR is RA3
+			;_MCLRE_ON	RA3/!MCLR is !MCLR
 			;_CP_OFF	Code protection off
 			;_CPD_OFF	Data memory protection off
 			;_BOREN_OFF	Brownout reset off
